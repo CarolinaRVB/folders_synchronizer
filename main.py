@@ -61,7 +61,8 @@ def main():
 	input_thread_loop.start()
 
 	# Set synchronization of folders over each self.interval
-	sync = Sync(source=source_path, replica=replica_path, logfile=logfile_path, interval=sync_interval, first=True, stop_thread=stop_thread, logger=log)
+	sync = Sync(source=source_path, replica=replica_path, logfile=logfile_path, interval=sync_interval,
+			 	first=True, stop_thread=stop_thread, logger=log)
 	sync_thread = threading.Thread(target=sync.sync_thread, daemon=True)
 	sync_thread.start()
 
