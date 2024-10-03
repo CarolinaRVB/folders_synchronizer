@@ -68,6 +68,7 @@ def main():
 
 	# Join threads
 	sync_thread.join()
+	input_thread_loop.join()
 
 
 if __name__ == "__main__":

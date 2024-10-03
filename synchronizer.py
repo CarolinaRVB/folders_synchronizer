@@ -20,9 +20,14 @@ class Sync():
 	def sync_thread(self):
 		self.logger.warning("*** New synchronization process ***")
 		while not self.stop_thread.is_set():
-			if not self.synchronize():
+			try:
+				if not self.synchronize():
+					self.stop_thread.set()
+					break
+			except Exception as err:
+				self.logger.error(f"Synchronization error: '{err}'")
 				self.stop_thread.set()
-				break 
+				break
 			time.sleep(self.interval)
 
 	def synchronize(self):
@@ -59,13 +64,21 @@ class Sync():
 			else:
 				source_path = self.source / item
 				if source_path.is_file():
-					if not self.equal_hashes(item):
+					if not self.equal_files(item):
 						self.handle_file(item, True)
 				elif source_path.is_dir():
 					source_size = self.get_folder_size(source_path)
 					replica_size = self.get_folder_size(self.replica / item)
 					if source_size != replica_size:
 						self.handle_file(item, True)
+
+	def equal_files(self, item):
+		source_file = self.source / item
+		replica_file = self.replica / item
+		if source_file.stat().st_size != replica_file.stat().st_size or \
+			source_file.stat().st_mtime != replica_file.stat().st_mtime:
+				return False
+		return self.equal_hashes(item)
 
 	def equal_hashes(self, item):
 		check = list()
@@ -79,24 +92,30 @@ class Sync():
 
 	def get_folder_size(self, path):
 		total_size = 0
-		for dir_path, dir_names, file_names in os.walk(path):
-			for file_name in file_names:
-				file_path = os.path.join(dir_path, file_name)
-				total_size += os.path.getsize(file_path)
+		with os.scandir(path) as item:
+			for entry in item:
+				if entry.is_file(follow_symlinks=False):
+					total_size += entry.stat().st_size
+				elif entry.is_dir(follow_symlinks=False):
+					total_size += self.get_folder_size(entry.path)
+		return total_size
 
 	def handle_file(self, item, cpy_flag):
-		path = self.replica / item
-		if path.exists() and path.is_file() or path.is_symlink():
-			path.unlink()
-			self.logger.info(f"File '{item}' was deleted from replica folder.")
-		elif path.exists() and path.is_dir():
-			shutil.rmtree(path)
-			self.logger.info(f"Folder '{item}' was deleted from replica folder.")
-		if cpy_flag:
-			source_path = self.source / item
-			if source_path.is_file():
-				shutil.copy2(source_path, self.replica, follow_symlinks=True)
-				self.logger.info(f"File '{item}' was copied.")
-			elif source_path.is_dir():
-				shutil.copytree(source_path, self.replica / item, dirs_exist_ok=True)
-				self.logger.info(f"Folder '{item}' was copied.")
+		replica_path = self.replica / item
+		try:
+			if replica_path.exists() and replica_path.is_file() or replica_path.is_symlink():
+				replica_path.unlink()
+				self.logger.info(f"File '{item}' was deleted from replica folder.")
+			elif replica_path.exists() and replica_path.is_dir():
+				shutil.rmtree(replica_path)
+				self.logger.info(f"Folder '{item}' was deleted from replica folder.")
+			if cpy_flag:
+				source_path = self.source / item
+				if source_path.exists() and source_path.is_file():
+					shutil.copy2(source_path, self.replica, follow_symlinks=False)
+					self.logger.info(f"File '{item}' was copied.")
+				elif source_path.exists() and source_path.is_dir():
+					shutil.copytree(source_path, self.replica / item, dirs_exist_ok=False, symlinks=True)
+					self.logger.info(f"Folder '{item}' was copied.")
+		except (IOError, OSError) as err:
+			self.logger.error(f"Error handling '{item}': {str(err)}")
