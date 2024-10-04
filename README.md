@@ -6,7 +6,7 @@ The One-Way Folder Synchronizer is a Python program designed to synchronize two 
 ## Features
 - **Synchronization Thread**: A dedicated thread runs the synchronization process continuously, checking for changes in the source folder at specified intervals. This allows the program to perform synchronization operations in the background without blocking the main execution flow.
 - **Input Thread**: A separate thread listens for user input, allowing the user to terminate the synchronization process gracefully by typing "stop". This means the user can interact with the program without interrupting the ongoing synchronization.
-- **Argument Parsing**: Parses the arguments to verify folder's existance. Has commented section to run the program without the requirement of arguments. Creates default files and folders. 
+- **Argument Parsing**: Parses the arguments to verify folder's existence. Has commented section to run the program without the requirement of arguments. Creates default files and folders. 
 - **File Comparison:** Uses file size, folders size, file permissions, and MD5 hash checks to verify the equality of files in the source and replica.
 - **Error Handling:** Logs errors and warnings during the synchronization process, allowing for easier troubleshooting.
 - **User Input Control:** Allows users to terminate the synchronization process gracefully.
@@ -31,7 +31,7 @@ python3 main.py --source_path [sourcePath] --replica_path [replicaPath] --logfil
 
 ## Example
 ```bash
-python3 main.py --source_path /path/to/source --replica_path /path/to/replica --logfile_path /path/to/logfile.log --sync_interval 10
+python3 main.py --source_path source --replica_path replica --logfile_path logger --sync_interval 5
 ```
 **NOTE:** Program also works if no arguments are provided - sets default behavior
 
