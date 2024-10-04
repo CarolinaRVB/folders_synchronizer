@@ -6,6 +6,8 @@ import threading
 from parser import Parser
 from synchronizer import Sync
 
+TERMINATE_COMMAND = "stop"
+
 def signal_handler(sig, frame):
 	print("\n\033[91mWarning\033[0m: forced termination of synchronization (Ctrl+C).\nExiting program.")
 	sys.exit(0)
@@ -13,11 +15,12 @@ def signal_handler(sig, frame):
 def input_thread(stop_thread):
 	while not stop_thread.is_set():
 		stop_sign = input("Write '\033[92mstop\033[0m' to terminate synchronization: \n")
-		if stop_sign.lower() == "stop":
+		if stop_sign.lower() == TERMINATE_COMMAND:
 			stop_thread.set()
-			print("\033[92m*** Synchronization terminated ***\nStopping threads and exiting program...\033[0m")
+			print("\033[92m*** Synchronization terminated ***\033[0m")
 		else:
 			print("\033[91mInvalid input: only 'stop' is accepted.\033[0m")
+	print("\033[92m Stopping threads and exiting program...\033[0m")
 
 def set_logging(logfile):
 	log = logging.getLogger(os.path.basename(logfile))
@@ -45,7 +48,7 @@ def main():
 	replica_path = parser.replica_path
 	logfile_path = parser.logfile_path
 	sync_interval = parser.sync_interval
-
+	
 	# Handle user signals
 	signal.signal(signal.SIGINT, signal_handler)
 

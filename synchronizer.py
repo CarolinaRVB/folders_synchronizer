@@ -23,8 +23,10 @@ class Sync():
 					self.stop_thread.set()
 			except Exception as err:
 				self.logger.error(f"Synchronization error: '{err}'")
+				self.logger.warning(f"Terminating synchronization due to error.")
 				self.stop_thread.set()
-
+			if self.stop_thread.is_set():
+					break
 			time.sleep(self.interval)
 
 	def synchronize(self):
@@ -32,7 +34,8 @@ class Sync():
 			result = filecmp.dircmp(self.source, self.replica)
 			self.update_folder_and_log(result)
 		else:
-			self.logger.error("Issue with logger or folders found.\nExiting synchronization.")
+			self.logger.error("Issue with logger or folders found. Exiting synchronization.")
+			print("\033[91m Stopping threads and exiting program...\033[0m")
 			return False
 		return True
 
@@ -47,56 +50,40 @@ class Sync():
 
 	def copy_new_files(self, result):
 		for item in result.left_only:
-			if item in result.common_funny:
-				if self.check_item_access(item):
-					self.handle_file(item, True)
-			else:
+			if self.check_item_access(item, 0):
 				self.logger.info(f"Item '{item}' was created in replica folder.")
 				self.handle_file(item, True)
-
-	# def double_check_common_files(self, result):
-	# 	for item in result.common:
-	# 		if item in result.common_funny:
-	# 			print("here in common")
-	# 			if self.check_item_access(item):
-	# 				self.handle_file(item, True)
-	# 			else:
-	# 				self.handle_file(item, False)
-	# 		else:
-	# 			source_path = self.source / item
-	# 			if source_path.is_file():
-	# 				if not self.equal_files(item):
-	# 					self.handle_file(item, True)
-	# 			elif source_path.is_dir():
-	# 				source_size = self.get_folder_size(source_path)
-	# 				replica_size = self.get_folder_size(self.replica / item)
-	# 				if source_size != replica_size:
-	# 					self.handle_file(item, True)
  
 	def double_check_common_files(self, result):
 		for item in result.common:
-			if self.check_item_access(item):
+			if self.check_item_access(item, 1):
 				source_path = self.source / item
+				replica_path = self.replica / item
+
 				if source_path.is_file():
 					if not self.equal_files(item):
 						self.handle_file(item, True)
 				elif source_path.is_dir():
+					if not self.check_permissions_in_subdirs(source_path, replica_path):
+						self.handle_file(item, True)
+					replica_size = self.get_folder_size(replica_path)
 					source_size = self.get_folder_size(source_path)
-					replica_size = self.get_folder_size(self.replica / item)
-					if source_size != replica_size:
+					if source_size != replica_size or os.listdir(source_path) != os.listdir(replica_path):
 						self.handle_file(item, True)
 			else:
 				self.handle_file(item, False)
 
-	def check_item_access(self, item):
+	def check_item_access(self, item, flag):
 		source_path = self.source / item
 		replica_path = self.replica / item
+		checker = True
 		if not os.access(source_path, os.R_OK):
 			self.logger.error(f"Item '{item}' cannot be read. Manual Synchronization required.")
-			return False
-		if not os.access(replica_path, os.R_OK):
-			return False
-		return True
+			checker = False
+		if flag:
+			if not os.access(replica_path, os.R_OK):
+				checker = False
+		return checker
 
 	def equal_files(self, item):
 		source_file = self.source / item
@@ -117,6 +104,20 @@ class Sync():
 			replica_hash = md5(file.read()).hexdigest()
 		return source_hash == replica_hash
 
+	def check_permissions_in_subdirs(self, source, replica):
+		for entry in os.scandir(source):
+			source_path = source / entry.name
+			replica_path = replica / entry.name
+
+			if entry.is_file() and replica_path.exists():
+				if os.stat(source_path).st_mode != os.stat(replica_path).st_mode:
+					self.logger.warning(f"Permissions differ for {source_path} and {replica_path}.")
+					return False
+			elif entry.is_dir() and replica_path.exists():
+				if not self.check_permissions_in_subdirs(source_path, replica_path):
+					return False
+		return True
+ 
 	def get_folder_size(self, path):
 		total_size = 0
 		with os.scandir(path) as item:
@@ -129,23 +130,31 @@ class Sync():
 
 	def handle_file(self, item, cpy_flag):
 		replica_path = self.replica / item
+		source_path = self.source / item
 		try:
-			if replica_path.exists():
-				if replica_path.is_file() or replica_path.is_symlink():
-					replica_path.unlink()
-					self.logger.info(f"File '{item}' was deleted from replica folder.")
-				elif replica_path.is_dir():
-					shutil.rmtree(replica_path)
-					self.logger.info(f"Folder '{item}' was deleted from replica folder.")
-			
+			self.delete(replica_path, item)			
 			if cpy_flag:
-				source_path = self.source / item
-				if source_path.exists():
-					if source_path.is_file():
-						shutil.copy2(source_path, self.replica, follow_symlinks=False)
-						self.logger.info(f"File '{item}' was copied.")
-					elif source_path.is_dir():
-						shutil.copytree(source_path, self.replica / item, dirs_exist_ok=False)
-						self.logger.info(f"Folder '{item}' was copied.")
+				self.copy(source_path, replica_path, item)
 		except (IOError, OSError) as err:
 			self.logger.error(f"Error handling '{item}': {str(err)}")
+
+	def delete(self, replica_path, item):
+		if replica_path.is_symlink():
+				replica_path.unlink()
+				self.logger.info(f"Symbolic link '{item}' was deleted from replica folder.")
+		if replica_path.exists():
+			if replica_path.is_file() or replica_path.is_symlink():
+				replica_path.unlink()
+				self.logger.info(f"File '{item}' was deleted from replica folder.")
+			elif replica_path.is_dir():
+				shutil.rmtree(replica_path)
+				self.logger.info(f"Folder '{item}' was deleted from replica folder.")
+
+	def copy(self, source_path, replica_path, item):
+		if source_path.exists():
+			if source_path.is_file():
+				shutil.copy2(source_path, self.replica, follow_symlinks=False)
+				self.logger.info(f"File '{item}' was copied.")
+			elif source_path.is_dir():
+				shutil.copytree(source_path, self.replica / item, dirs_exist_ok=False)
+				self.logger.info(f"Folder '{item}' was copied.")

@@ -3,8 +3,10 @@ import sys
 import argparse
 from pathlib import Path
 
+MIN_INTERVAL = 1
+MAX_INTERVAL = 10
+
 # Checks and validates folders 
-# Works for different OS's
 class Parser():
 	def __init__(self) -> None:
 		self.source_path = None
@@ -41,11 +43,11 @@ class Parser():
 		# 		self.sync_interval = 5
 		# 	return 
 
-		# Check if both Folders exits
+		# Check if Folders/Files exits and if time is inside interval
 		self.source_path = self.check_path_arg(args.source_path, 0)
 		self.replica_path = self.check_path_arg(args.replica_path, 0)
 		self.logfile_path = self.check_path_arg(args.logfile_path, 1)
-		if args.sync_interval <= 0 or args.sync_interval > 10:
+		if not MIN_INTERVAL < args.sync_interval <= MAX_INTERVAL:
 			print("\033[91mError\033[0m: Please choose a synchronization interval between 1 and 10 seconds (included).")
 			sys.exit(1)
 		self.sync_interval = args.sync_interval

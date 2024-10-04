@@ -1,5 +1,6 @@
 replica/**/*
 source/**/*
+logger
 
 !replica/.gitkeep
 !source/.gitkeep

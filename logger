@@ -1,0 +1,160 @@
+04/10/2024 12:34:10 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:34:25 | logger | INFO | Folder 'adding dir' was deleted from replica folder.
+04/10/2024 12:34:35 | logger | INFO | Item 'dir' was created in replica folder.
+04/10/2024 12:34:35 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 12:34:52 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:36:25 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:37:46 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:39:32 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:41:41 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:43:11 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:43:40 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:43:40 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 12:43:41 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 12:46:31 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:46:32 | logger | ERROR | Synchronization error: '[Errno 20] Not a directory: 0'
+04/10/2024 12:49:10 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:49:10 | logger | ERROR | Synchronization error: '[Errno 20] Not a directory: 0'
+04/10/2024 12:49:10 | logger | WARNING | Terminating synchronization due to error.
+04/10/2024 12:52:31 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:52:31 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 12:52:31 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 12:53:16 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:53:16 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 12:53:16 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 12:53:37 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 12:53:37 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 12:55:42 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:55:42 | logger | INFO | Item 'newdir' was created in replica folder.
+04/10/2024 12:55:42 | logger | INFO | Folder 'newdir' was copied.
+04/10/2024 12:55:57 | logger | INFO | Item 'new' was created in replica folder.
+04/10/2024 12:55:57 | logger | INFO | Folder 'new' was copied.
+04/10/2024 12:56:13 | logger | INFO | Folder 'new' was deleted from replica folder.
+04/10/2024 12:56:13 | logger | INFO | Folder 'new' was copied.
+04/10/2024 12:57:30 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 12:57:30 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 13:10:46 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:13:00 | logger | INFO | Item 'test' was created in replica folder.
+04/10/2024 13:13:00 | logger | INFO | File 'test' was copied.
+04/10/2024 13:13:15 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/test and /mnt/c/Users/carol/folders_sync/replica/test.
+04/10/2024 13:13:15 | logger | INFO | File 'test' was deleted from replica folder.
+04/10/2024 13:13:16 | logger | INFO | File 'test' was copied.
+04/10/2024 13:24:14 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:24:14 | logger | ERROR | Synchronization error: 'local variable 'entry' referenced before assignment'
+04/10/2024 13:24:14 | logger | WARNING | Terminating synchronization due to error.
+04/10/2024 13:24:35 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:26:06 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:26:37 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:26:37 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/dir/file and /mnt/c/Users/carol/folders_sync/replica/dir/file.
+04/10/2024 13:26:37 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 13:26:37 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 13:27:14 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:27:40 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/dir/file and /mnt/c/Users/carol/folders_sync/replica/dir/file.
+04/10/2024 13:27:40 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 13:27:40 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 13:35:58 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:35:58 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:03 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:08 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:13 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:27 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:36:27 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:33 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:38 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:36:43 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:37:14 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:37:14 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:37:19 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:40:32 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:40:33 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:40:38 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:40:43 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:43:54 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:43:54 | logger | ERROR | Synchronization error: ''str' object has no attribute 'is_symlink''
+04/10/2024 13:43:54 | logger | WARNING | Terminating synchronization due to error.
+04/10/2024 13:44:16 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:44:16 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:44:21 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:47:24 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:47:24 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:47:29 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:48:28 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:48:28 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:48:33 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:48:38 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:49:25 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:49:25 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:49:30 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:50:38 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:50:38 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:51:45 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:51:45 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:51:51 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:52:45 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:52:45 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:52:45 | logger | INFO | File 'link' was deleted from replica folder.
+04/10/2024 13:52:51 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:53:53 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:53:53 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:53:59 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:04 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:09 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:14 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:19 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:25 | logger | INFO | Symbolic link 'linkdfg' was deleted from replica folder.
+04/10/2024 13:54:25 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:30 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:35 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:40 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:45 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:51 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:54:56 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:55:01 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:55:06 | logger | ERROR | Item 'link' cannot be read. Manual Synchronization required.
+04/10/2024 13:56:25 | logger | WARNING | *** New synchronization process ***
+04/10/2024 13:56:25 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 13:56:25 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 13:57:01 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/dir/file and /mnt/c/Users/carol/folders_sync/replica/dir/file.
+04/10/2024 13:57:01 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 13:57:01 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 14:04:27 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:04:37 | logger | INFO | Item 'neeeee' was created in replica folder.
+04/10/2024 14:04:37 | logger | INFO | File 'neeeee' was copied.
+04/10/2024 14:04:48 | logger | ERROR | Issue with logger or folders found.
+Exiting synchronization.
+04/10/2024 14:08:09 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:08:15 | logger | ERROR | Issue with logger or folders found. Exiting synchronization.
+04/10/2024 14:09:47 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:09:52 | logger | ERROR | Issue with logger or folders found. Exiting synchronization.
+04/10/2024 14:10:48 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:10:53 | logger | ERROR | Issue with logger or folders found. Exiting synchronization.
+04/10/2024 14:12:05 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:12:15 | logger | INFO | Item 'dir' was created in replica folder.
+04/10/2024 14:12:15 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 14:12:36 | logger | INFO | File 'delete' was deleted from replica folder.
+04/10/2024 14:12:47 | logger | INFO | Item 'extra' was created in replica folder.
+04/10/2024 14:12:47 | logger | INFO | File 'extra' was copied.
+04/10/2024 14:12:52 | logger | INFO | Item 'dirr' was created in replica folder.
+04/10/2024 14:12:52 | logger | INFO | Folder 'dirr' was copied.
+04/10/2024 14:13:40 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/extra and /mnt/c/Users/carol/folders_sync/replica/extra.
+04/10/2024 14:13:40 | logger | INFO | File 'extra' was deleted from replica folder.
+04/10/2024 14:13:40 | logger | INFO | File 'extra' was copied.
+04/10/2024 14:14:07 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/extra and /mnt/c/Users/carol/folders_sync/replica/extra.
+04/10/2024 14:14:07 | logger | INFO | File 'extra' was deleted from replica folder.
+04/10/2024 14:14:07 | logger | INFO | File 'extra' was copied.
+04/10/2024 14:15:00 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/extra and /mnt/c/Users/carol/folders_sync/replica/extra.
+04/10/2024 14:15:00 | logger | INFO | File 'extra' was deleted from replica folder.
+04/10/2024 14:15:00 | logger | INFO | File 'extra' was copied.
+04/10/2024 14:15:10 | logger | INFO | File 'extra' was deleted from replica folder.
+04/10/2024 14:15:10 | logger | INFO | File 'extra' was copied.
+04/10/2024 14:15:21 | logger | INFO | Item 'test' was created in replica folder.
+04/10/2024 14:15:21 | logger | INFO | File 'test' was copied.
+04/10/2024 14:31:42 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:49:46 | logger | WARNING | *** New synchronization process ***
+04/10/2024 14:49:56 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 14:49:56 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 14:50:36 | logger | WARNING | Permissions differ for /mnt/c/Users/carol/folders_sync/source/dir/file and /mnt/c/Users/carol/folders_sync/replica/dir/file.
+04/10/2024 14:50:36 | logger | INFO | Folder 'dir' was deleted from replica folder.
+04/10/2024 14:50:36 | logger | INFO | Folder 'dir' was copied.
+04/10/2024 14:51:42 | logger | INFO | Item 'another' was created in replica folder.
+04/10/2024 14:51:42 | logger | INFO | Folder 'another' was copied.
