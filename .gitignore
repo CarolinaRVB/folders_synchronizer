@@ -1,0 +1,6 @@
+replica/**/*
+source/**/*
+
+!replica/.gitkeep
+!source/.gitkeep
+
