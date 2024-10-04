@@ -4,7 +4,8 @@
 The One-Way Folder Synchronizer is a Python program designed to synchronize two folders: a **source** folder and a **replica** folder. The synchronization process ensures that the replica folder matches the contents of the source folder, copying new or modified files from the source and removing any files in the replica that are no longer present in the source.
 
 ## Features
-- **Automatic Synchronization:** Periodically checks for changes in the source folder and updates the replica accordingly.
+- **Synchronization Thread**: A dedicated thread runs the synchronization process continuously, checking for changes in the source folder at specified intervals. This allows the program to perform synchronization operations in the background without blocking the main execution flow.
+- **Input Thread**: A separate thread listens for user input, allowing the user to terminate the synchronization process gracefully by typing "stop". This means the user can interact with the program without interrupting the ongoing synchronization.
 - **File Comparison:** Uses file size, modification time, and MD5 hash checks to verify the equality of files in the source and replica.
 - **Error Handling:** Logs errors and warnings during the synchronization process, allowing for easier troubleshooting.
 - **User Input Control:** Allows users to terminate the synchronization process gracefully.
@@ -22,14 +23,17 @@ To run the program, use the following command in your terminal:
 python3 main.py --source_path [sourcePath] --replica_path [replicaPath] --logfile_path [log] --sync_interval [interval in seconds]
 ```
 ## Arguments
---**source_path**: The path to the source folder that you want to synchronize from.
---**replica_path**: The path to the replica folder that you want to synchronize to.
---**logfile_path**: The path where the log file will be created to record synchronization events and errors.
---**sync_interval**: The time interval (in seconds) at which the synchronization should occur.
+- **source_path**: The path to the source folder that you want to synchronize from.
+- **replica_path**: The path to the replica folder that you want to synchronize to.
+- **logfile_path**: The path where the log file will be created to record synchronization events and errors.
+- **sync_interval**: The time interval (in seconds) at which the synchronization should occur.
 
 ## Example
-```python3 main.py --source_path /path/to/source --replica_path /path/to/replica --logfile_path /path/to/logfile.log --sync_interval 10
+```bash
+python3 main.py --source_path /path/to/source --replica_path /path/to/replica --logfile_path /path/to/logfile.log --sync_interval 10
 ```
+**NOTE:** Program also works if no arguments are provided - sets default behavior
+
 ## Logging
 The program logs all operations to the specified logfile and outputs to the console. Each log entry includes a timestamp, the logger name, log level, and a message describing the operation performed.
 
