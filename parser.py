@@ -3,7 +3,7 @@ import sys
 import argparse
 from pathlib import Path
 
-# Checks and validates folders
+# Checks and validates folders 
 # Works for different OS's
 class Parser():
 	def __init__(self) -> None:
@@ -25,32 +25,46 @@ class Parser():
 		# Parse args to check if valid
 		args = parser.parse_args()
 
-		# No args provided, set default folders and return
-		if args.source_path is None and args.replica_path is None:
-			self.source_path = Path("source").resolve()
-			if not self.source_path.exists():
-				self.create_folders("source")
-			self.replica_path = Path("replica").resolve()
-			if not self.replica_path.exists():
-				self.create_folders("replica")
-			return 
+		# # Uncomment the following section to run code without arguments  
+		# if args.source_path is None or args.replica_path is None or \
+		# args.lofile_path is None or args.sync_interval is None:
+		# 	self.source_path = Path("source").resolve()
+		# 	if not self.source_path.exists():
+		# 		self.create_folders_files("source", 0)
+		# 	self.replica_path = Path("replica").resolve()
+		# 	if not self.replica_path.exists():
+		# 		self.create_folders_files("replica", 0)
+		# 	self.logfile_path = Path("logger").resolve()
+		# 	if not self.logfile_path.exists():
+		# 		self.create_folders_files("logger", 1)
+		# 	if not self.sync_interval:
+		# 		self.sync_interval = 5
+		# 	return 
 
 		# Check if both Folders exits
 		self.source_path = self.check_path_arg(args.source_path, 0)
 		self.replica_path = self.check_path_arg(args.replica_path, 0)
 		self.logfile_path = self.check_path_arg(args.logfile_path, 1)
 		self.sync_interval = args.sync_interval
+  
 		# If not valid return error message and exit program
 		if not self.source_path or not self.replica_path or not self.logfile_path or not self.sync_interval:
-			print("\033[91mError\033[0m: Missing or invalid arguments.\nRUN: '\033[92mpython3 main.py --source_path [sourcePath] --replica_path [replicaPath] --logfile_path [log] --sync_interval [interval in seconds]\033[0m'")
+			print("\033[91mError\033[0m: run: '\033[92mpython3 main.py --source_path [sourcePath] --replica_path [replicaPath] --logfile_path [loggerPath] --sync_interval [intervalInSeconds]\033[0m'")
 			sys.exit(1)
 
-	def create_folders(self, path):
-		try:
-			os.makedirs(path, exist_ok=True)
-		except Exception as e:
-			print(f"Error creating directory {path}: {e}")
-			sys.exit(1)
+	# def create_folders_files(self, path, flag):
+	# 	if not flag:
+	# 		try:
+	# 			os.makedirs(path, exist_ok=True)
+	# 		except Exception as err:
+	# 			print(f"Error creating directory {path}: {err}")
+	# 			sys.exit(1)
+	# 	else:
+	# 		try:
+	# 			self.logfile_path.touch()
+	# 		except Exception as err:
+	# 			print(f"Error creating file {path}: {err}")
+	# 			sys.exit(1)
 
 	def check_path_arg(self, path, flag):
 		if path:

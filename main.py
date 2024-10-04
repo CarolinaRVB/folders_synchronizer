@@ -57,7 +57,7 @@ def main():
 	log = set_logging(logfile_path)
 
 	# Set infinite loop in separate thread until user requests to stop or sync fails
-	input_thread_loop = threading.Thread(target=input_thread, args={stop_thread,}, daemon=True)
+	input_thread_loop = threading.Thread(target=input_thread, args=(stop_thread,), daemon=True)
 	input_thread_loop.start()
 
 	# Set synchronization of folders over each self.interval
