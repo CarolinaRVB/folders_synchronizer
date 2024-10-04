@@ -25,7 +25,6 @@ def set_logging(logfile):
 	
 	file_handler = logging.FileHandler(logfile)
 	file_handler.setLevel(logging.INFO)
-
 	stdout_handler = logging.StreamHandler(sys.stdout)
 	stdout_handler.setLevel(logging.INFO)
 
@@ -66,9 +65,8 @@ def main():
 	sync_thread = threading.Thread(target=sync.sync_thread, daemon=True)
 	sync_thread.start()
 
-	# Join threads
+	# Join thread
 	sync_thread.join()
-	input_thread_loop.join()
 
 
 if __name__ == "__main__":

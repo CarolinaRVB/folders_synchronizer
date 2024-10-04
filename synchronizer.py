@@ -54,12 +54,28 @@ class Sync():
 				self.logger.info(f"Item '{item}' was created in replica folder.")
 				self.handle_file(item, True)
 
+	# def double_check_common_files(self, result):
+	# 	for item in result.common:
+	# 		if item in result.common_funny:
+	# 			print("here in common")
+	# 			if self.check_item_access(item):
+	# 				self.handle_file(item, True)
+	# 			else:
+	# 				self.handle_file(item, False)
+	# 		else:
+	# 			source_path = self.source / item
+	# 			if source_path.is_file():
+	# 				if not self.equal_files(item):
+	# 					self.handle_file(item, True)
+	# 			elif source_path.is_dir():
+	# 				source_size = self.get_folder_size(source_path)
+	# 				replica_size = self.get_folder_size(self.replica / item)
+	# 				if source_size != replica_size:
+	# 					self.handle_file(item, True)
+ 
 	def double_check_common_files(self, result):
 		for item in result.common:
-			if item in result.common_funny:
-				if self.check_item_access(item):
-					self.handle_file(item, True)
-			else:
+			if self.check_item_access(item):
 				source_path = self.source / item
 				if source_path.is_file():
 					if not self.equal_files(item):
@@ -69,19 +85,27 @@ class Sync():
 					replica_size = self.get_folder_size(self.replica / item)
 					if source_size != replica_size:
 						self.handle_file(item, True)
+			else:
+				self.handle_file(item, False)
 
 	def check_item_access(self, item):
 		source_path = self.source / item
+		replica_path = self.replica / item
 		if not os.access(source_path, os.R_OK):
 			self.logger.error(f"Item '{item}' cannot be read. Manual Synchronization required.")
+			return False
+		if not os.access(replica_path, os.R_OK):
 			return False
 		return True
 
 	def equal_files(self, item):
 		source_file = self.source / item
 		replica_file = self.replica / item
+		if os.stat(source_file).st_mode != os.stat(replica_file).st_mode:
+			self.logger.warning(f"Permissions differ for {source_file} and {replica_file}.")
+			return False
 		if source_file.stat().st_size != replica_file.stat().st_size: 
-				return False
+			return False
 		return self.equal_hashes(item)
 
 	def equal_hashes(self, item):
@@ -90,8 +114,8 @@ class Sync():
 		with open(source_file, 'rb') as file:
 			source_hash = md5(file.read()).hexdigest()
 		with open(replica_file, 'rb') as file:
-			replica_file = md5(file.read()).hexdigest()
-		return source_hash == replica_file
+			replica_hash = md5(file.read()).hexdigest()
+		return source_hash == replica_hash
 
 	def get_folder_size(self, path):
 		total_size = 0

@@ -45,26 +45,15 @@ class Parser():
 		self.source_path = self.check_path_arg(args.source_path, 0)
 		self.replica_path = self.check_path_arg(args.replica_path, 0)
 		self.logfile_path = self.check_path_arg(args.logfile_path, 1)
+		if args.sync_interval <= 0 or args.sync_interval > 10:
+			print("\033[91mError\033[0m: Please choose a synchronization interval between 1 and 10 seconds (included).")
+			sys.exit(1)
 		self.sync_interval = args.sync_interval
   
 		# If not valid return error message and exit program
 		if not self.source_path or not self.replica_path or not self.logfile_path or not self.sync_interval:
 			print("\033[91mError\033[0m: run: '\033[92mpython3 main.py --source_path [sourcePath] --replica_path [replicaPath] --logfile_path [loggerPath] --sync_interval [intervalInSeconds]\033[0m'")
 			sys.exit(1)
-
-	# def create_folders_files(self, path, flag):
-	# 	if not flag:
-	# 		try:
-	# 			os.makedirs(path, exist_ok=True)
-	# 		except Exception as err:
-	# 			print(f"Error creating directory {path}: {err}")
-	# 			sys.exit(1)
-	# 	else:
-	# 		try:
-	# 			self.logfile_path.touch()
-	# 		except Exception as err:
-	# 			print(f"Error creating file {path}: {err}")
-	# 			sys.exit(1)
 
 	def check_path_arg(self, path, flag):
 		if path:
@@ -83,3 +72,17 @@ class Parser():
 					print(f"Error: The path '{abs_path}' is not a file.")
 			return abs_path
 		return None
+
+	# def create_folders_files(self, path, flag):
+	# 	if not flag:
+	# 		try:
+	# 			os.makedirs(path, exist_ok=True)
+	# 		except Exception as err:
+	# 			print(f"Error creating directory {path}: {err}")
+	# 			sys.exit(1)
+	# 	else:
+	# 		try:
+	# 			self.logfile_path.touch()
+	# 		except Exception as err:
+	# 			print(f"Error creating file {path}: {err}")
+	# 			sys.exit(1)

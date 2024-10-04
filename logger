@@ -1,12 +1,33 @@
-04/10/2024 10:34:24 | logger | WARNING | *** New synchronization process ***
-04/10/2024 10:34:29 | logger | ERROR | Issue with logger or folders found.
-Exiting synchronization.
-04/10/2024 10:37:30 | logger | WARNING | *** New synchronization process ***
-04/10/2024 10:37:35 | logger | ERROR | Issue with logger or folders found.
-Exiting synchronization.
-04/10/2024 10:38:02 | logger | WARNING | *** New synchronization process ***
-04/10/2024 10:38:12 | logger | ERROR | Issue with logger or folders found.
-Exiting synchronization.
-04/10/2024 10:39:09 | logger | WARNING | *** New synchronization process ***
-04/10/2024 10:39:14 | logger | ERROR | Issue with logger or folders found.
-Exiting synchronization.
+04/10/2024 11:05:51 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:06:03 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:08:57 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:09:14 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:09:56 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:32:41 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:34:08 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:35:05 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:38:41 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:49:38 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:50:40 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:50:40 | logger | INFO | File 'del' was deleted from replica folder.
+04/10/2024 11:53:07 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:54:22 | logger | WARNING | *** New synchronization process ***
+04/10/2024 11:55:05 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:00:20 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:01:01 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:08:03 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:10:11 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:13:07 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:16:18 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:18:33 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:18:33 | logger | ERROR | Synchronization error: 'name 'file1' is not defined'
+04/10/2024 12:18:56 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:18:56 | logger | INFO | File 'tester' was deleted from replica folder.
+04/10/2024 12:18:56 | logger | INFO | File 'tester' was copied.
+04/10/2024 12:22:46 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:22:46 | logger | INFO | File 'tester' was deleted from replica folder.
+04/10/2024 12:22:46 | logger | INFO | File 'tester' was copied.
+04/10/2024 12:25:04 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:26:00 | logger | WARNING | *** New synchronization process ***
+04/10/2024 12:26:00 | logger | INFO | File 'tester' was deleted from replica folder.
+04/10/2024 12:26:00 | logger | INFO | File 'tester' was copied.
