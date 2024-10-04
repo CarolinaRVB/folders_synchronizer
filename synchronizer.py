@@ -6,12 +6,11 @@ from hashlib import md5
 from pathlib import Path
 
 class Sync():
-	def __init__(self, source, replica, logfile, interval, first, stop_thread, logger) -> None:
+	def __init__(self, source, replica, logfile, interval, stop_thread, logger) -> None:
 		self.source = source
 		self.replica = replica
 		self.logfile = logfile
 		self.interval = interval
-		self.first = first
 		self.stop_thread = stop_thread
 		self.logger = logger
 		
